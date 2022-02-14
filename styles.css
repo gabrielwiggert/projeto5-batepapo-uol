@@ -83,3 +83,11 @@ main {
 #privateMessage {
     background-color: #FFDEDE;
 }
+
+span {
+    color: #AAAAAA;
+}
+
+em {
+    font-weight: bold;
+}

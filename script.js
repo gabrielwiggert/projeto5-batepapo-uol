@@ -47,7 +47,7 @@ function renderizarMensagens(resposta) {
         if (mensagem.type == "message") {
             div.innerHTML += `
                 <div class="mensagem" id="standardMessage" data-identifier="message">
-                    <p>(${mensagem.time}) ${mensagem.from} para ${mensagem.to}: ${mensagem.text}</p>
+                    <p><span>(${mensagem.time})</span> <em>${mensagem.from}</em> para <em>${mensagem.to}</em>: ${mensagem.text}</p>
                 </div>
                 `;
         }
@@ -55,7 +55,7 @@ function renderizarMensagens(resposta) {
         if (mensagem.type == "status") {
             div.innerHTML += `
                 <div class="mensagem" id="status" data-identifier="message">
-                    <p>(${mensagem.time}) ${mensagem.from} ${mensagem.text}</p>
+                    <p><span>(${mensagem.time})</span> <em>${mensagem.from}</em> ${mensagem.text}</p>
                 </div>
                 `;
         }
@@ -63,11 +63,13 @@ function renderizarMensagens(resposta) {
         if (mensagem.type == "private_message") {
             div.innerHTML += `
                 <div class="mensagem" id="privateMessage" data-identifier="message">
-                    <p>(${mensagem.time}) ${mensagem.from} reservadamente para ${mensagem.to}: ${mensagem.text}</p>
+                    <p><span>(${mensagem.time})</span> <em>${mensagem.from}</em> reservadamente para <em>${mensagem.to}</em>: ${mensagem.text}</p>
                 </div>
                 `;
         }
 }
+        const lastElement = document.querySelector('.main').lastChild;
+        lastElement.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function sendMessage() {
