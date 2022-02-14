@@ -71,3 +71,15 @@ main {
     margin-bottom: 4px;
     font-size: 14px;
 }
+
+#standardMessage {
+    background-color: white;
+}
+
+#status {
+    background-color: #DCDCDC;
+}
+
+#privateMessage {
+    background-color: #FFDEDE;
+}
