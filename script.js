@@ -46,7 +46,7 @@ function renderizarMensagens(resposta) {
 
         if (mensagem.type == "message") {
             div.innerHTML += `
-                <div class="mensagem" id="standardMessage">
+                <div class="mensagem" id="standardMessage" data-identifier="message">
                     <p>(${mensagem.time}) ${mensagem.from} para ${mensagem.to}: ${mensagem.text}</p>
                 </div>
                 `;
@@ -54,7 +54,7 @@ function renderizarMensagens(resposta) {
 
         if (mensagem.type == "status") {
             div.innerHTML += `
-                <div class="mensagem" id="status">
+                <div class="mensagem" id="status" data-identifier="message">
                     <p>(${mensagem.time}) ${mensagem.from} ${mensagem.text}</p>
                 </div>
                 `;
@@ -62,10 +62,36 @@ function renderizarMensagens(resposta) {
 
         if (mensagem.type == "private_message") {
             div.innerHTML += `
-                <div class="mensagem" id="privateMessage">
+                <div class="mensagem" id="privateMessage" data-identifier="message">
                     <p>(${mensagem.time}) ${mensagem.from} reservadamente para ${mensagem.to}: ${mensagem.text}</p>
                 </div>
                 `;
         }
 }
+}
+
+function sendMessage() {
+    let mensagem = document.getElementById('mensagemDigitada').value;
+    document.getElementById('mensagemDigitada').value = "";
+
+    let promise = axios.post(
+        "https://mock-api.driven.com.br/api/v4/uol/messages",
+        {
+            from: username,
+            to: "Todos",
+            text: mensagem,
+            type: "message"
+        }
+    );
+
+    promise.then(sendSuccessful);
+    promise.catch(sendError);
+}
+
+function sendSuccessful() {
+    getMensagens();
+}
+
+function sendError() {
+    window.location.reload();
 }
