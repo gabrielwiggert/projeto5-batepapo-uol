@@ -8,6 +8,11 @@ function quandoSucesso() {
     setInterval(conexaoServidor, 5000);
 }
 
+function quandoErro() {
+    alert("já existe alguém no chat com esse nome!")
+    inicio();
+}
+
 function inicio() {
     username = prompt("Seu lindo nome");
 
@@ -19,6 +24,7 @@ function inicio() {
     );
 
     promise.then(quandoSucesso);
+    promise.catch(quandoErro);
 }
 
 function conexaoServidor() {
